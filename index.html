@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Loop Wallpaper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        
+        svg {
+            max-width: 100vw;
+            max-height: 100vh;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .stage-box {
+            fill: #1a1a1a;
+            stroke: #00ff88;
+            stroke-width: 2;
+        }
+        
+        .stage-title {
+            font-size: 18px;
+            font-weight: bold;
+            fill: #00ff88;
+            text-anchor: middle;
+        }
+        
+        .stage-desc {
+            font-size: 12px;
+            fill: #aaa;
+            text-anchor: middle;
+        }
+        
+        .fix-text {
+            font-size: 11px;
+            fill: #ff6b9d;
+            text-anchor: middle;
+            font-weight: bold;
+        }
+        
+        .brain-text {
+            font-size: 10px;
+            fill: #888;
+            text-anchor: middle;
+            font-style: italic;
+        }
+        
+        .arrow {
+            stroke: #00ff88;
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+        
+        .feedback-arrow {
+            stroke: #ff6b9d;
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 5,5;
+            marker-end: url(#arrowhead-pink);
+        }
+        
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            fill: #00ff88;
+            text-anchor: middle;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            fill: #666;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+    <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#00ff88"/>
+            </marker>
+            <marker id="arrowhead-pink" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                <polygon points="0 0, 10 3, 0 6" fill="#ff6b9d"/>
+            </marker>
+        </defs>
+        
+        <!-- Background -->
+        <rect width="1400" height="900" fill="#000"/>
+        
+        <!-- Title -->
+        <text x="700" y="50" class="title">THE HABIT LOOP</text>
+        <text x="700" y="75" class="subtitle">Break the Neurological Feedback Cycle</text>
+        
+        <!-- Stage 1: CUE (Top Left) -->
+        <rect x="100" y="200" width="200" height="120" class="stage-box" rx="8"/>
+        <text x="200" y="235" class="stage-title">1. CUE</text>
+        <text x="200" y="255" class="stage-desc">Trigger</text>
+        <text x="200" y="275" class="brain-text">Basal Ganglia Alert</text>
+        <text x="200" y="300" class="fix-text">Make it Invisible</text>
+        
+        <!-- Stage 2: CRAVING (Top Right) -->
+        <rect x="1100" y="200" width="200" height="120" class="stage-box" rx="8"/>
+        <text x="1200" y="235" class="stage-title">2. CRAVING</text>
+        <text x="1200" y="255" class="stage-desc">Dopamine Spike</text>
+        <text x="1200" y="275" class="brain-text">Anticipation Drive</text>
+        <text x="1200" y="300" class="fix-text">Redefine It</text>
+        
+        <!-- Stage 3: RESPONSE (Bottom Right) -->
+        <rect x="1100" y="580" width="200" height="120" class="stage-box" rx="8"/>
+        <text x="1200" y="615" class="stage-title">3. RESPONSE</text>
+        <text x="1200" y="635" class="stage-desc">The Routine</text>
+        <text x="1200" y="655" class="brain-text">Prefrontal Offline</text>
+        <text x="1200" y="680" class="fix-text">Make it Difficult</text>
+        
+        <!-- Stage 4: REWARD (Bottom Left) -->
+        <rect x="100" y="580" width="200" height="120" class="stage-box" rx="8"/>
+        <text x="200" y="615" class="stage-title">4. REWARD</text>
+        <text x="200" y="635" class="stage-desc">Relief/Satisfaction</text>
+        <text x="200" y="655" class="brain-text">Dopamine Release</text>
+        <text x="200" y="680" class="fix-text">Make it Unsatisfying</text>
+        
+        <!-- Main Loop Arrows (Forward Direction) -->
+        <!-- CUE to CRAVING -->
+        <path d="M 300 260 Q 700 150 1100 260" class="arrow"/>
+        <text x="700" y="140" class="stage-desc" fill="#00ff88">triggers</text>
+        
+        <!-- CRAVING to RESPONSE -->
+        <path d="M 1200 320 L 1200 580" class="arrow"/>
+        <text x="1260" y="450" class="stage-desc" fill="#00ff88">drives action</text>
+        
+        <!-- RESPONSE to REWARD -->
+        <path d="M 1100 640 Q 700 750 300 640" class="arrow"/>
+        <text x="700" y="770" class="stage-desc" fill="#00ff88">satisfies</text>
+        
+        <!-- REWARD to CUE (Feedback Loop) -->
+        <path d="M 200 580 L 200 320" class="feedback-arrow"/>
+        <text x="80" y="450" class="stage-desc" fill="#ff6b9d">reinforces</text>
+        
+        <!-- Top label -->
+        <text x="700" y="120" class="subtitle" fill="#00ff88" style="font-size: 13px;">↓ INTERCEPT AT ANY STAGE ↓</text>
+        
+        <!-- Bottom instruction -->
+        <text x="700" y="850" class="subtitle" fill="#555">Break one link to break the entire loop</text>
+    </svg>
+</body>
+</html>
