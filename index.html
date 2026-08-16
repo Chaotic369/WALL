@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Habit Loop Diagram</title>
+    <title>Habit Loop Quotes</title>
     <style>
         * {
             margin: 0;
@@ -13,70 +13,208 @@
         
         body {
             background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
         }
         
-        svg {
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .quote-card {
+            display: none;
+            text-align: center;
+            max-width: 90%;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .quote-card.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .quote-text {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #00ff88;
+            letter-spacing: -0.5px;
+        }
+        
+        .quote-category {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 30px;
             width: 100%;
-            height: 100%;
-            max-width: 100vw;
-            max-height: 100vh;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            width: 44px;
+            height: 44px;
+            border: 2px solid #00ff88;
+            background: transparent;
+            color: #00ff88;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .btn:active {
+            background: #00ff88;
+            color: #000;
+        }
+        
+        .counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 600px) {
+            .quote-text {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid meet">
-        <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <polygon points="0 0, 10 3, 0 6" fill="#00ff88"/>
-            </marker>
-        </defs>
+    <div class="container">
+        <div id="quoteContainer"></div>
+    </div>
+    
+    <div class="counter">
+        <span id="current">1</span> / <span id="total">12</span>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="prevQuote()">←</button>
+        <button class="btn" onclick="nextQuote()">→</button>
+    </div>
+    
+    <script>
+        const quotes = [
+            {
+                text: "Your brain rewired itself through repetition.",
+                category: "The Feedback Loop"
+            },
+            {
+                text: "Each cycle makes the habit deeper. Each cycle makes it harder to break.",
+                category: "The Feedback Loop"
+            },
+            {
+                text: "Not because you want them to. Not because you're undisciplined.",
+                category: "Why It Happens"
+            },
+            {
+                text: "Your conscious mind can override your habits maybe 10% of the time.",
+                category: "Willpower Myth"
+            },
+            {
+                text: "When stressed, tired, anxious, bored—your prefrontal cortex is offline.",
+                category: "The 90%"
+            },
+            {
+                text: "You cannot willpower your way out of a neurological habit. Period.",
+                category: "Hard Truth"
+            },
+            {
+                text: "Don't try to resist the cue—eliminate it.",
+                category: "Break the Cue"
+            },
+            {
+                text: "Sit with the discomfort. Let the craving peak and pass.",
+                category: "Break the Craving"
+            },
+            {
+                text: "Make the action physically harder than the relief it provides.",
+                category: "Break the Response"
+            },
+            {
+                text: "Make the consequences more real than the temporary relief.",
+                category: "Break the Reward"
+            },
+            {
+                text: "Pick one. Break one link.",
+                category: "The Solution"
+            },
+            {
+                text: "The entire chain collapses.",
+                category: "The Result"
+            }
+        ];
         
-        <!-- Background -->
-        <rect width="600" height="700" fill="#000"/>
+        let currentIndex = 0;
         
-        <!-- Stage 1: CUE (Top) -->
-        <rect x="175" y="30" width="250" height="90" fill="#0a0a0a" stroke="#00ff88" stroke-width="2" rx="8"/>
-        <text x="300" y="60" font-size="20" font-weight="bold" fill="#00ff88" text-anchor="middle">1. CUE</text>
-        <text x="300" y="85" font-size="12" fill="#aaa" text-anchor="middle">Make it Invisible</text>
+        function renderQuote() {
+            const container = document.getElementById('quoteContainer');
+            container.innerHTML = '';
+            
+            const quote = quotes[currentIndex];
+            const card = document.createElement('div');
+            card.className = 'quote-card active';
+            card.innerHTML = `
+                <div class="quote-category">${quote.category}</div>
+                <div class="quote-text">"${quote.text}"</div>
+            `;
+            container.appendChild(card);
+            
+            document.getElementById('current').textContent = currentIndex + 1;
+            document.getElementById('total').textContent = quotes.length;
+        }
         
-        <!-- Arrow 1 to 2 -->
-        <path d="M 300 120 L 300 160" stroke="#00ff88" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        function nextQuote() {
+            currentIndex = (currentIndex + 1) % quotes.length;
+            renderQuote();
+        }
         
-        <!-- Stage 2: CRAVING (Right) -->
-        <rect x="380" y="160" width="180" height="90" fill="#0a0a0a" stroke="#00ff88" stroke-width="2" rx="8"/>
-        <text x="470" y="190" font-size="20" font-weight="bold" fill="#00ff88" text-anchor="middle">2. CRAVING</text>
-        <text x="470" y="215" font-size="12" fill="#aaa" text-anchor="middle">Redefine It</text>
+        function prevQuote() {
+            currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+            renderQuote();
+        }
         
-        <!-- Arrow 2 to 3 -->
-        <path d="M 470 250 Q 470 330 380 370" stroke="#00ff88" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextQuote();
+            if (e.key === 'ArrowLeft') prevQuote();
+        });
         
-        <!-- Stage 3: RESPONSE (Bottom Right) -->
-        <rect x="200" y="370" width="180" height="90" fill="#0a0a0a" stroke="#00ff88" stroke-width="2" rx="8"/>
-        <text x="290" y="400" font-size="20" font-weight="bold" fill="#00ff88" text-anchor="middle">3. RESPONSE</text>
-        <text x="290" y="425" font-size="12" fill="#aaa" text-anchor="middle">Make it Difficult</text>
-        
-        <!-- Arrow 3 to 4 -->
-        <path d="M 200 415 L 140 415" stroke="#00ff88" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
-        
-        <!-- Stage 4: REWARD (Left) -->
-        <rect x="40" y="370" width="100" height="90" fill="#0a0a0a" stroke="#00ff88" stroke-width="2" rx="8"/>
-        <text x="90" y="400" font-size="18" font-weight="bold" fill="#00ff88" text-anchor="middle">4.</text>
-        <text x="90" y="422" font-size="14" font-weight="bold" fill="#00ff88" text-anchor="middle">REWARD</text>
-        <text x="90" y="440" font-size="10" fill="#aaa" text-anchor="middle">Unsatisfying</text>
-        
-        <!-- Arrow 4 back to 1 (Feedback Loop) -->
-        <path d="M 90 370 Q 90 200 175 75" stroke="#ff6b9d" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
-        <polygon points="0 0, 10 3, 0 6" fill="#ff6b9d" transform="translate(175 75)"/>
-        
-        <!-- Center label -->
-        <circle cx="300" cy="380" r="80" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="3,3"/>
-        <text x="300" y="380" font-size="13" fill="#666" text-anchor="middle" dominant-baseline="middle">BREAK</text>
-        <text x="300" y="397" font-size="13" fill="#666" text-anchor="middle" dominant-baseline="middle">THE LOOP</text>
-    </svg>
+        renderQuote();
+    </script>
 </body>
 </html>
