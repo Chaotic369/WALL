@@ -2,162 +2,276 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Loop Wallpaper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Habit Loop - Mobile</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         
-        body {
+        html, body {
+            width: 100%;
+            height: 100%;
             background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow: hidden;
         }
         
-        svg {
-            max-width: 100vw;
-            max-height: 100vh;
+        .container {
             width: 100%;
-            height: 100%;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
-        .stage-box {
-            fill: #1a1a1a;
-            stroke: #00ff88;
-            stroke-width: 2;
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 10px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .stages {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .stage {
+            background: #0a0a0a;
+            border: 2px solid #00ff88;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .stage-number {
+            display: inline-block;
+            background: #00ff88;
+            color: #000;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 12px;
         }
         
         .stage-title {
             font-size: 18px;
-            font-weight: bold;
-            fill: #00ff88;
-            text-anchor: middle;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 6px;
         }
         
-        .stage-desc {
-            font-size: 12px;
-            fill: #aaa;
-            text-anchor: middle;
+        .stage-subtitle {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 12px;
         }
         
-        .fix-text {
+        .stage-content {
+            margin-bottom: 12px;
+        }
+        
+        .brain-label {
             font-size: 11px;
-            fill: #ff6b9d;
-            text-anchor: middle;
-            font-weight: bold;
-        }
-        
-        .brain-text {
-            font-size: 10px;
-            fill: #888;
-            text-anchor: middle;
+            color: #666;
             font-style: italic;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #1a1a1a;
+            border-left: 2px solid #00ff88;
+            border-radius: 4px;
         }
         
-        .arrow {
-            stroke: #00ff88;
-            stroke-width: 2;
-            fill: none;
-            marker-end: url(#arrowhead);
+        .fix-label {
+            font-size: 12px;
+            color: #ff6b9d;
+            font-weight: 600;
+            padding: 10px;
+            background: #1a0a0f;
+            border-left: 3px solid #ff6b9d;
+            border-radius: 4px;
         }
         
-        .feedback-arrow {
-            stroke: #ff6b9d;
-            stroke-width: 2;
-            fill: none;
-            stroke-dasharray: 5,5;
-            marker-end: url(#arrowhead-pink);
+        .arrow-down {
+            text-align: center;
+            color: #00ff88;
+            font-size: 24px;
+            margin: 12px 0;
+            font-weight: 300;
         }
         
-        .title {
-            font-size: 28px;
-            font-weight: bold;
-            fill: #00ff88;
-            text-anchor: middle;
+        .loop-indicator {
+            text-align: center;
+            margin: 30px 0;
+            padding: 16px;
+            background: #0a0a0a;
+            border: 2px dashed #ff6b9d;
+            border-radius: 8px;
         }
         
-        .subtitle {
+        .loop-text {
+            font-size: 13px;
+            color: #ff6b9d;
+            font-weight: 600;
+        }
+        
+        .loop-subtext {
+            font-size: 11px;
+            color: #666;
+            margin-top: 6px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #555;
+            font-size: 12px;
+            border-top: 1px solid #1a1a1a;
+        }
+        
+        @media (max-height: 667px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .header {
+                margin-bottom: 20px;
+            }
+            
+            .stages {
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .stage {
+                padding: 16px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+        }
+        
+        .cta {
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: #00ff88;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
             font-size: 14px;
-            fill: #666;
-            text-anchor: middle;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .cta:active {
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
-        <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <polygon points="0 0, 10 3, 0 6" fill="#00ff88"/>
-            </marker>
-            <marker id="arrowhead-pink" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <polygon points="0 0, 10 3, 0 6" fill="#ff6b9d"/>
-            </marker>
-        </defs>
+    <div class="container">
+        <div class="header">
+            <div class="title">THE HABIT LOOP</div>
+            <div class="subtitle">Break Your Neurological Cycle</div>
+        </div>
         
-        <!-- Background -->
-        <rect width="1400" height="900" fill="#000"/>
+        <div class="stages">
+            <!-- Stage 1 -->
+            <div class="stage">
+                <div class="stage-number">1</div>
+                <div class="stage-title">CUE</div>
+                <div class="stage-subtitle">The Trigger</div>
+                <div class="stage-content">
+                    <div class="brain-label">🧠 Basal Ganglia Alert</div>
+                    <p style="font-size: 13px; color: #999; margin-bottom: 10px;">Environmental context, time of day, emotional state, or preceding event</p>
+                    <div class="fix-label">💡 FIX: Make it Invisible</div>
+                    <p style="font-size: 12px; color: #999; margin-top: 8px;">Remove the trigger from your environment (move phone, change location, etc.)</p>
+                </div>
+            </div>
+            
+            <div class="arrow-down">↓</div>
+            
+            <!-- Stage 2 -->
+            <div class="stage">
+                <div class="stage-number">2</div>
+                <div class="stage-title">CRAVING</div>
+                <div class="stage-subtitle">Dopamine Anticipation</div>
+                <div class="stage-content">
+                    <div class="brain-label">🧠 Motivational Drive Spike</div>
+                    <p style="font-size: 13px; color: #999; margin-bottom: 10px;">Dopamine releases when you anticipate reward, not when you get it</p>
+                    <div class="fix-label">💡 FIX: Redefine It</div>
+                    <p style="font-size: 12px; color: #999; margin-top: 8px;">Use mindfulness—notice the urge without immediately feeding it</p>
+                </div>
+            </div>
+            
+            <div class="arrow-down">↓</div>
+            
+            <!-- Stage 3 -->
+            <div class="stage">
+                <div class="stage-number">3</div>
+                <div class="stage-title">RESPONSE</div>
+                <div class="stage-subtitle">The Routine</div>
+                <div class="stage-content">
+                    <div class="brain-label">🧠 Prefrontal Cortex Offline</div>
+                    <p style="font-size: 13px; color: #999; margin-bottom: 10px;">Automatic execution takes over; logic goes silent</p>
+                    <div class="fix-label">💡 FIX: Make it Difficult</div>
+                    <p style="font-size: 12px; color: #999; margin-top: 8px;">Add friction—extra steps, locked apps, anything that raises energy cost</p>
+                </div>
+            </div>
+            
+            <div class="arrow-down">↓</div>
+            
+            <!-- Stage 4 -->
+            <div class="stage">
+                <div class="stage-number">4</div>
+                <div class="stage-title">REWARD</div>
+                <div class="stage-subtitle">Relief & Satisfaction</div>
+                <div class="stage-content">
+                    <div class="brain-label">🧠 Dopamine Release</div>
+                    <p style="font-size: 13px; color: #999; margin-bottom: 10px;">Temporary fix teaches your brain to repeat the cycle</p>
+                    <div class="fix-label">💡 FIX: Make it Unsatisfying</div>
+                    <p style="font-size: 12px; color: #999; margin-top: 8px;">Focus on the negative aftermath (crash, regret, wasted time)</p>
+                </div>
+            </div>
+        </div>
         
-        <!-- Title -->
-        <text x="700" y="50" class="title">THE HABIT LOOP</text>
-        <text x="700" y="75" class="subtitle">Break the Neurological Feedback Cycle</text>
+        <div class="loop-indicator">
+            <div class="loop-text">🔁 STAGE 4 → STAGE 1</div>
+            <div class="loop-subtext">The reward reinforces the cue, and the cycle repeats</div>
+        </div>
         
-        <!-- Stage 1: CUE (Top Left) -->
-        <rect x="100" y="200" width="200" height="120" class="stage-box" rx="8"/>
-        <text x="200" y="235" class="stage-title">1. CUE</text>
-        <text x="200" y="255" class="stage-desc">Trigger</text>
-        <text x="200" y="275" class="brain-text">Basal Ganglia Alert</text>
-        <text x="200" y="300" class="fix-text">Make it Invisible</text>
+        <button class="cta" onclick="alert('Map your habit loop:\n\n1. What is your specific bad habit?\n2. What triggers it?\n3. What are you really craving?\n4. What is the reward?')">Start Breaking Your Loop</button>
         
-        <!-- Stage 2: CRAVING (Top Right) -->
-        <rect x="1100" y="200" width="200" height="120" class="stage-box" rx="8"/>
-        <text x="1200" y="235" class="stage-title">2. CRAVING</text>
-        <text x="1200" y="255" class="stage-desc">Dopamine Spike</text>
-        <text x="1200" y="275" class="brain-text">Anticipation Drive</text>
-        <text x="1200" y="300" class="fix-text">Redefine It</text>
-        
-        <!-- Stage 3: RESPONSE (Bottom Right) -->
-        <rect x="1100" y="580" width="200" height="120" class="stage-box" rx="8"/>
-        <text x="1200" y="615" class="stage-title">3. RESPONSE</text>
-        <text x="1200" y="635" class="stage-desc">The Routine</text>
-        <text x="1200" y="655" class="brain-text">Prefrontal Offline</text>
-        <text x="1200" y="680" class="fix-text">Make it Difficult</text>
-        
-        <!-- Stage 4: REWARD (Bottom Left) -->
-        <rect x="100" y="580" width="200" height="120" class="stage-box" rx="8"/>
-        <text x="200" y="615" class="stage-title">4. REWARD</text>
-        <text x="200" y="635" class="stage-desc">Relief/Satisfaction</text>
-        <text x="200" y="655" class="brain-text">Dopamine Release</text>
-        <text x="200" y="680" class="fix-text">Make it Unsatisfying</text>
-        
-        <!-- Main Loop Arrows (Forward Direction) -->
-        <!-- CUE to CRAVING -->
-        <path d="M 300 260 Q 700 150 1100 260" class="arrow"/>
-        <text x="700" y="140" class="stage-desc" fill="#00ff88">triggers</text>
-        
-        <!-- CRAVING to RESPONSE -->
-        <path d="M 1200 320 L 1200 580" class="arrow"/>
-        <text x="1260" y="450" class="stage-desc" fill="#00ff88">drives action</text>
-        
-        <!-- RESPONSE to REWARD -->
-        <path d="M 1100 640 Q 700 750 300 640" class="arrow"/>
-        <text x="700" y="770" class="stage-desc" fill="#00ff88">satisfies</text>
-        
-        <!-- REWARD to CUE (Feedback Loop) -->
-        <path d="M 200 580 L 200 320" class="feedback-arrow"/>
-        <text x="80" y="450" class="stage-desc" fill="#ff6b9d">reinforces</text>
-        
-        <!-- Top label -->
-        <text x="700" y="120" class="subtitle" fill="#00ff88" style="font-size: 13px;">↓ INTERCEPT AT ANY STAGE ↓</text>
-        
-        <!-- Bottom instruction -->
-        <text x="700" y="850" class="subtitle" fill="#555">Break one link to break the entire loop</text>
-    </svg>
+        <div class="footer">
+            Break one link in the chain to break the entire cycle
+        </div>
+    </div>
 </body>
 </html>
