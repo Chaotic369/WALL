@@ -14,78 +14,11 @@
         body {
             background: #000;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-        }
-        
-        #controls {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #00ff88;
-            border-radius: 8px;
-            padding: 15px;
-            z-index: 100;
-            max-height: 90vh;
-            overflow-y: auto;
-            width: 280px;
-        }
-        
-        .control-group {
-            margin-bottom: 12px;
-            font-size: 12px;
-            color: #aaa;
-        }
-        
-        .control-group label {
-            display: block;
-            margin-bottom: 4px;
-            color: #00ff88;
-            font-weight: bold;
-        }
-        
-        .control-group input[type="color"] {
-            width: 100%;
-            height: 30px;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        
-        .control-group input[type="range"] {
-            width: 100%;
-            cursor: pointer;
-        }
-        
-        .control-group input[type="number"] {
-            width: 100%;
-            padding: 4px;
-            background: #1a1a1a;
-            border: 1px solid #00ff88;
-            color: #00ff88;
-            border-radius: 4px;
-        }
-        
-        #saveBtn {
-            width: 100%;
-            padding: 10px;
-            background: #ff6b9d;
-            border: none;
-            color: #000;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s;
-        }
-        
-        #saveBtn:hover {
-            background: #ff8ab8;
         }
         
         svg {
@@ -158,49 +91,7 @@
     </style>
 </head>
 <body>
-    <div id="controls">
-        <h3 style="color: #00ff88; margin-bottom: 15px;">Theme Controls</h3>
-        
-        <div class="control-group">
-            <label>Box Fill Color</label>
-            <input type="color" id="boxFill" value="#1a1a1a">
-        </div>
-        
-        <div class="control-group">
-            <label>Box Stroke Color</label>
-            <input type="color" id="boxStroke" value="#00ff88">
-        </div>
-        
-        <div class="control-group">
-            <label>Arrow Color</label>
-            <input type="color" id="arrowColor" value="#00ff88">
-        </div>
-        
-        <div class="control-group">
-            <label>Accent Color (Fix Text)</label>
-            <input type="color" id="accentColor" value="#ff6b9d">
-        </div>
-        
-        <div class="control-group">
-            <label>Title Color</label>
-            <input type="color" id="titleColor" value="#00ff88">
-        </div>
-        
-        <div class="control-group">
-            <label>Box Corner Radius</label>
-            <input type="range" id="cornerRadius" min="0" max="30" value="8">
-            <span id="cornerValue">8px</span>
-        </div>
-        
-        <div class="control-group">
-            <label>Background Color</label>
-            <input type="color" id="bgColor" value="#000000">
-        </div>
-        
-        <button id="saveBtn">📥 Save as High-Quality Image</button>
-    </div>
-
-    <svg id="diagramSvg" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
+    <svg viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
         <defs>
             <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
                 <polygon points="0 0, 10 3, 0 6" fill="#00ff88"/>
@@ -211,35 +102,35 @@
         </defs>
         
         <!-- Background -->
-        <rect id="bgRect" width="1400" height="900" fill="#000"/>
+        <rect width="1400" height="900" fill="#000"/>
         
         <!-- Title -->
-        <text id="mainTitle" x="700" y="50" class="title">THE HABIT LOOP</text>
+        <text x="700" y="50" class="title">THE HABIT LOOP</text>
         <text x="700" y="75" class="subtitle">Break the Neurological Feedback Cycle</text>
         
         <!-- Stage 1: CUE (Top Left) -->
-        <rect class="stage-box" x="100" y="200" width="200" height="120" rx="8"/>
+        <rect x="100" y="200" width="200" height="120" class="stage-box" rx="8"/>
         <text x="200" y="235" class="stage-title">1. CUE</text>
         <text x="200" y="255" class="stage-desc">Trigger</text>
         <text x="200" y="275" class="brain-text">Basal Ganglia Alert</text>
         <text x="200" y="300" class="fix-text">Make it Invisible</text>
         
         <!-- Stage 2: CRAVING (Top Right) -->
-        <rect class="stage-box" x="1100" y="200" width="200" height="120" rx="8"/>
+        <rect x="1100" y="200" width="200" height="120" class="stage-box" rx="8"/>
         <text x="1200" y="235" class="stage-title">2. CRAVING</text>
         <text x="1200" y="255" class="stage-desc">Dopamine Spike</text>
         <text x="1200" y="275" class="brain-text">Anticipation Drive</text>
         <text x="1200" y="300" class="fix-text">Redefine It</text>
         
         <!-- Stage 3: RESPONSE (Bottom Right) -->
-        <rect class="stage-box" x="1100" y="580" width="200" height="120" rx="8"/>
+        <rect x="1100" y="580" width="200" height="120" class="stage-box" rx="8"/>
         <text x="1200" y="615" class="stage-title">3. RESPONSE</text>
         <text x="1200" y="635" class="stage-desc">The Routine</text>
         <text x="1200" y="655" class="brain-text">Prefrontal Offline</text>
         <text x="1200" y="680" class="fix-text">Make it Difficult</text>
         
         <!-- Stage 4: REWARD (Bottom Left) -->
-        <rect class="stage-box" x="100" y="580" width="200" height="120" rx="8"/>
+        <rect x="100" y="580" width="200" height="120" class="stage-box" rx="8"/>
         <text x="200" y="615" class="stage-title">4. REWARD</text>
         <text x="200" y="635" class="stage-desc">Relief/Satisfaction</text>
         <text x="200" y="655" class="brain-text">Dopamine Release</text>
@@ -247,19 +138,19 @@
         
         <!-- Main Loop Arrows (Forward Direction) -->
         <!-- CUE to CRAVING -->
-        <path class="arrow" d="M 300 260 Q 700 150 1100 260"/>
+        <path d="M 300 260 Q 700 150 1100 260" class="arrow"/>
         <text x="700" y="140" class="stage-desc" fill="#00ff88">triggers</text>
         
         <!-- CRAVING to RESPONSE -->
-        <path class="arrow" d="M 1200 320 L 1200 580"/>
+        <path d="M 1200 320 L 1200 580" class="arrow"/>
         <text x="1260" y="450" class="stage-desc" fill="#00ff88">drives action</text>
         
         <!-- RESPONSE to REWARD -->
-        <path class="arrow" d="M 1100 640 Q 700 750 300 640"/>
+        <path d="M 1100 640 Q 700 750 300 640" class="arrow"/>
         <text x="700" y="770" class="stage-desc" fill="#00ff88">satisfies</text>
         
         <!-- REWARD to CUE (Feedback Loop) -->
-        <path class="feedback-arrow" d="M 200 580 L 200 320"/>
+        <path d="M 200 580 L 200 320" class="feedback-arrow"/>
         <text x="80" y="450" class="stage-desc" fill="#ff6b9d">reinforces</text>
         
         <!-- Top label -->
@@ -268,428 +159,5 @@
         <!-- Bottom instruction -->
         <text x="700" y="850" class="subtitle" fill="#555">Break one link to break the entire loop</text>
     </svg>
-
-    <script>
-        const controls = {
-            boxFill: document.getElementById('boxFill'),
-            boxStroke: document.getElementById('boxStroke'),
-            arrowColor: document.getElementById('arrowColor'),
-            accentColor: document.getElementById('accentColor'),
-            titleColor: document.getElementById('titleColor'),
-            cornerRadius: document.getElementById('cornerRadius'),
-            bgColor: document.getElementById('bgColor'),
-            saveBtn: document.getElementById('saveBtn')
-        };
-
-        const svg = document.getElementById('diagramSvg');
-
-        function updateTheme() {
-            document.querySelectorAll('.stage-box').forEach(box => {
-                box.setAttribute('fill', controls.boxFill.value);
-                box.setAttribute('stroke', controls.boxStroke.value);
-                box.setAttribute('rx', controls.cornerRadius.value);
-            });
-
-            document.querySelectorAll('.arrow').forEach(arrow => {
-                arrow.setAttribute('stroke', controls.arrowColor.value);
-                arrow.setAttribute('marker-end', `url(#arrowhead)`);
-            });
-
-            document.querySelectorAll('.feedback-arrow').forEach(arrow => {
-                arrow.setAttribute('stroke', controls.accentColor.value);
-                arrow.setAttribute('marker-end', `url(#arrowhead-pink)`);
-            });
-
-            document.querySelectorAll('.stage-title, .title').forEach(title => {
-                title.setAttribute('fill', controls.titleColor.value);
-            });
-
-            document.querySelectorAll('.fix-text').forEach(text => {
-                text.setAttribute('fill', controls.accentColor.value);
-            });
-
-            document.getElementById('bgRect').setAttribute('fill', controls.bgColor.value);
-
-            document.getElementById('arrowhead').querySelector('polygon').setAttribute('fill', controls.arrowColor.value);
-            document.getElementById('arrowhead-pink').querySelector('polygon').setAttribute('fill', controls.accentColor.value);
-
-            document.getElementById('cornerValue').textContent = controls.cornerRadius.value + 'px';
-        }
-
-        controls.boxFill.addEventListener('change', updateTheme);
-        controls.boxStroke.addEventListener('change', updateTheme);
-        controls.arrowColor.addEventListener('change', updateTheme);
-        controls.accentColor.addEventListener('change', updateTheme);
-        controls.titleColor.addEventListener('change', updateTheme);
-        controls.cornerRadius.addEventListener('input', updateTheme);
-        controls.bgColor.addEventListener('change', updateTheme);
-
-        controls.saveBtn.addEventListener('click', async function() {
-            const svgData = new XMLSerializer().serializeToString(svg);
-            const canvas = document.createElement('canvas');
-            canvas.width = 2800;
-            canvas.height = 1800;
-            const ctx = canvas.getContext('2d');
-
-            const img = new Image();
-            img.onload = function() {
-                ctx.drawImage(img, 0, 0, 2800, 1800);
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png', 1.0);
-                link.download = 'habit-loop-diagram.png';
-                link.click();
-            };
-
-            img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
-        });
-    </script>
-</body>
-</html>
-===SPLIT===
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Loop Wallpaper</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-        }
-        
-        #controls {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #00ff88;
-            border-radius: 8px;
-            padding: 15px;
-            z-index: 100;
-            max-height: 90vh;
-            overflow-y: auto;
-            width: 280px;
-        }
-        
-        .control-group {
-            margin-bottom: 12px;
-            font-size: 12px;
-            color: #aaa;
-        }
-        
-        .control-group label {
-            display: block;
-            margin-bottom: 4px;
-            color: #00ff88;
-            font-weight: bold;
-        }
-        
-        .control-group input[type="color"] {
-            width: 100%;
-            height: 30px;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        
-        .control-group input[type="range"] {
-            width: 100%;
-            cursor: pointer;
-        }
-        
-        .control-group input[type="number"] {
-            width: 100%;
-            padding: 4px;
-            background: #1a1a1a;
-            border: 1px solid #00ff88;
-            color: #00ff88;
-            border-radius: 4px;
-        }
-        
-        #saveBtn {
-            width: 100%;
-            padding: 10px;
-            background: #ff6b9d;
-            border: none;
-            color: #000;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s;
-        }
-        
-        #saveBtn:hover {
-            background: #ff8ab8;
-        }
-        
-        svg {
-            max-width: 100vw;
-            max-height: 100vh;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .stage-box {
-            fill: #1a1a1a;
-            stroke: #00ff88;
-            stroke-width: 2;
-        }
-        
-        .stage-title {
-            font-size: 18px;
-            font-weight: bold;
-            fill: #00ff88;
-            text-anchor: middle;
-        }
-        
-        .stage-desc {
-            font-size: 12px;
-            fill: #aaa;
-            text-anchor: middle;
-        }
-        
-        .fix-text {
-            font-size: 11px;
-            fill: #ff6b9d;
-            text-anchor: middle;
-            font-weight: bold;
-        }
-        
-        .brain-text {
-            font-size: 10px;
-            fill: #888;
-            text-anchor: middle;
-            font-style: italic;
-        }
-        
-        .arrow {
-            stroke: #00ff88;
-            stroke-width: 2;
-            fill: none;
-            marker-end: url(#arrowhead);
-        }
-        
-        .feedback-arrow {
-            stroke: #ff6b9d;
-            stroke-width: 2;
-            fill: none;
-            stroke-dasharray: 5,5;
-            marker-end: url(#arrowhead-pink);
-        }
-        
-        .title {
-            font-size: 28px;
-            font-weight: bold;
-            fill: #00ff88;
-            text-anchor: middle;
-        }
-        
-        .subtitle {
-            font-size: 14px;
-            fill: #666;
-            text-anchor: middle;
-        }
-    </style>
-</head>
-<body>
-    <div id="controls">
-        <h3 style="color: #00ff88; margin-bottom: 15px;">Theme Controls</h3>
-        
-        <div class="control-group">
-            <label>Box Fill Color</label>
-            <input type="color" id="boxFill" value="#1a1a1a">
-        </div>
-        
-        <div class="control-group">
-            <label>Box Stroke Color</label>
-            <input type="color" id="boxStroke" value="#00ff88">
-        </div>
-        
-        <div class="control-group">
-            <label>Arrow Color</label>
-            <input type="color" id="arrowColor" value="#00ff88">
-        </div>
-        
-        <div class="control-group">
-            <label>Accent Color (Fix Text)</label>
-            <input type="color" id="accentColor" value="#ff6b9d">
-        </div>
-        
-        <div class="control-group">
-            <label>Title Color</label>
-            <input type="color" id="titleColor" value="#00ff88">
-        </div>
-        
-        <div class="control-group">
-            <label>Box Corner Radius</label>
-            <input type="range" id="cornerRadius" min="0" max="30" value="8">
-            <span id="cornerValue">8px</span>
-        </div>
-        
-        <div class="control-group">
-            <label>Background Color</label>
-            <input type="color" id="bgColor" value="#000000">
-        </div>
-        
-        <button id="saveBtn">📥 Save as High-Quality Image</button>
-    </div>
-
-    <svg id="diagramSvg" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
-        <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <polygon points="0 0, 10 3, 0 6" fill="#00ff88"/>
-            </marker>
-            <marker id="arrowhead-pink" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                <polygon points="0 0, 10 3, 0 6" fill="#ff6b9d"/>
-            </marker>
-        </defs>
-        
-        <!-- Background -->
-        <rect id="bgRect" width="1400" height="900" fill="#000"/>
-        
-        <!-- Title -->
-        <text id="mainTitle" x="700" y="50" class="title">THE HABIT LOOP</text>
-        <text x="700" y="75" class="subtitle">Break the Neurological Feedback Cycle</text>
-        
-        <!-- Stage 1: CUE (Top Left) -->
-        <rect class="stage-box" x="100" y="200" width="200" height="120" rx="8"/>
-        <text x="200" y="235" class="stage-title">1. CUE</text>
-        <text x="200" y="255" class="stage-desc">Trigger</text>
-        <text x="200" y="275" class="brain-text">Basal Ganglia Alert</text>
-        <text x="200" y="300" class="fix-text">Make it Invisible</text>
-        
-        <!-- Stage 2: CRAVING (Top Right) -->
-        <rect class="stage-box" x="1100" y="200" width="200" height="120" rx="8"/>
-        <text x="1200" y="235" class="stage-title">2. CRAVING</text>
-        <text x="1200" y="255" class="stage-desc">Dopamine Spike</text>
-        <text x="1200" y="275" class="brain-text">Anticipation Drive</text>
-        <text x="1200" y="300" class="fix-text">Redefine It</text>
-        
-        <!-- Stage 3: RESPONSE (Bottom Right) -->
-        <rect class="stage-box" x="1100" y="580" width="200" height="120" rx="8"/>
-        <text x="1200" y="615" class="stage-title">3. RESPONSE</text>
-        <text x="1200" y="635" class="stage-desc">The Routine</text>
-        <text x="1200" y="655" class="brain-text">Prefrontal Offline</text>
-        <text x="1200" y="680" class="fix-text">Make it Difficult</text>
-        
-        <!-- Stage 4: REWARD (Bottom Left) -->
-        <rect class="stage-box" x="100" y="580" width="200" height="120" rx="8"/>
-        <text x="200" y="615" class="stage-title">4. REWARD</text>
-        <text x="200" y="635" class="stage-desc">Relief/Satisfaction</text>
-        <text x="200" y="655" class="brain-text">Dopamine Release</text>
-        <text x="200" y="680" class="fix-text">Make it Unsatisfying</text>
-        
-        <!-- Main Loop Arrows (Forward Direction) -->
-        <!-- CUE to CRAVING -->
-        <path class="arrow" d="M 300 260 Q 700 150 1100 260"/>
-        <text x="700" y="140" class="stage-desc" fill="#00ff88">triggers</text>
-        
-        <!-- CRAVING to RESPONSE -->
-        <path class="arrow" d="M 1200 320 L 1200 580"/>
-        <text x="1260" y="450" class="stage-desc" fill="#00ff88">drives action</text>
-        
-        <!-- RESPONSE to REWARD -->
-        <path class="arrow" d="M 1100 640 Q 700 750 300 640"/>
-        <text x="700" y="770" class="stage-desc" fill="#00ff88">satisfies</text>
-        
-        <!-- REWARD to CUE (Feedback Loop) -->
-        <path class="feedback-arrow" d="M 200 580 L 200 320"/>
-        <text x="80" y="450" class="stage-desc" fill="#ff6b9d">reinforces</text>
-        
-        <!-- Top label -->
-        <text x="700" y="120" class="subtitle" fill="#00ff88" style="font-size: 13px;">↓ INTERCEPT AT ANY STAGE ↓</text>
-        
-        <!-- Bottom instruction -->
-        <text x="700" y="850" class="subtitle" fill="#555">Break one link to break the entire loop</text>
-    </svg>
-
-    <script>
-        const controls = {
-            boxFill: document.getElementById('boxFill'),
-            boxStroke: document.getElementById('boxStroke'),
-            arrowColor: document.getElementById('arrowColor'),
-            accentColor: document.getElementById('accentColor'),
-            titleColor: document.getElementById('titleColor'),
-            cornerRadius: document.getElementById('cornerRadius'),
-            bgColor: document.getElementById('bgColor'),
-            saveBtn: document.getElementById('saveBtn')
-        };
-
-        const svg = document.getElementById('diagramSvg');
-
-        function updateTheme() {
-            document.querySelectorAll('.stage-box').forEach(box => {
-                box.setAttribute('fill', controls.boxFill.value);
-                box.setAttribute('stroke', controls.boxStroke.value);
-                box.setAttribute('rx', controls.cornerRadius.value);
-            });
-
-            document.querySelectorAll('.arrow').forEach(arrow => {
-                arrow.setAttribute('stroke', controls.arrowColor.value);
-                arrow.setAttribute('marker-end', `url(#arrowhead)`);
-            });
-
-            document.querySelectorAll('.feedback-arrow').forEach(arrow => {
-                arrow.setAttribute('stroke', controls.accentColor.value);
-                arrow.setAttribute('marker-end', `url(#arrowhead-pink)`);
-            });
-
-            document.querySelectorAll('.stage-title, .title').forEach(title => {
-                title.setAttribute('fill', controls.titleColor.value);
-            });
-
-            document.querySelectorAll('.fix-text').forEach(text => {
-                text.setAttribute('fill', controls.accentColor.value);
-            });
-
-            document.getElementById('bgRect').setAttribute('fill', controls.bgColor.value);
-
-            document.getElementById('arrowhead').querySelector('polygon').setAttribute('fill', controls.arrowColor.value);
-            document.getElementById('arrowhead-pink').querySelector('polygon').setAttribute('fill', controls.accentColor.value);
-
-            document.getElementById('cornerValue').textContent = controls.cornerRadius.value + 'px';
-        }
-
-        controls.boxFill.addEventListener('change', updateTheme);
-        controls.boxStroke.addEventListener('change', updateTheme);
-        controls.arrowColor.addEventListener('change', updateTheme);
-        controls.accentColor.addEventListener('change', updateTheme);
-        controls.titleColor.addEventListener('change', updateTheme);
-        controls.cornerRadius.addEventListener('input', updateTheme);
-        controls.bgColor.addEventListener('change', updateTheme);
-
-        controls.saveBtn.addEventListener('click', async function() {
-            const svgData = new XMLSerializer().serializeToString(svg);
-            const canvas = document.createElement('canvas');
-            canvas.width = 2800;
-            canvas.height = 1800;
-            const ctx = canvas.getContext('2d');
-
-            const img = new Image();
-            img.onload = function() {
-                ctx.drawImage(img, 0, 0, 2800, 1800);
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png', 1.0);
-                link.download = 'habit-loop-diagram.png';
-                link.click();
-            };
-
-            img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
-        });
-    </script>
 </body>
 </html>
